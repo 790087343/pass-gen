@@ -84,94 +84,107 @@ function App() {
     <div className="min-h-screen py-8 px-4">
       <div className="max-w-4xl mx-auto">
         {/* 头部 */}
-        <header className="mb-8">
+        <header className="mb-8" role="banner">
           <div className="flex items-center justify-between mb-4">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
                 密码生成器
               </h1>
               <p className="text-gray-600 dark:text-gray-400 mt-1">
-                安全、易用的在线密码生成工具
+                安全、易用的在线密码生成工具 - 免费生成强密码，保护您的账户安全
               </p>
             </div>
             <ThemeToggle />
           </div>
         </header>
 
-        {/* 安全提示 */}
-        <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-          <p className="text-sm text-blue-800 dark:text-blue-200">
-            <strong>🔒 安全提示：</strong>
-            所有密码均在您的浏览器本地生成，不会上传到任何服务器。建议使用密码管理器保存生成的密码。
-          </p>
-        </div>
+        {/* 主要内容区域 */}
+        <main role="main">
+          {/* 安全提示 */}
+          <section className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg" aria-label="安全提示">
+            <p className="text-sm text-blue-800 dark:text-blue-200">
+              <strong>🔒 安全提示：</strong>
+              所有密码均在您的浏览器本地生成，不会上传到任何服务器。建议使用密码管理器保存生成的密码。
+            </p>
+          </section>
 
-        {/* 密码配置 */}
-        <div className="mb-6">
-          <PasswordConfig config={config} onConfigChange={handleConfigChange} />
-        </div>
+          {/* 密码配置 */}
+          <section className="mb-6" aria-label="密码配置">
+            <PasswordConfig config={config} onConfigChange={handleConfigChange} />
+          </section>
 
-        {/* 生成按钮 */}
-        <div className="mb-6 flex flex-wrap gap-3">
-          <button
-            onClick={handleGenerate}
-            disabled={!isConfigValid()}
-            className="btn-primary flex-1 min-w-[120px]"
-            type="button"
-          >
-            生成密码
-          </button>
-          <div className="flex gap-2 flex-1 min-w-[200px]">
-            <input
-              type="number"
-              min="1"
-              max="50"
-              value={batchCount}
-              onChange={(e) => setBatchCount(Math.max(1, Math.min(50, parseInt(e.target.value) || 1)))}
-              className="input-field w-20 text-center"
-            />
+          {/* 生成按钮 */}
+          <section className="mb-6 flex flex-wrap gap-3" aria-label="生成操作">
             <button
-              onClick={handleBatchGenerate}
+              onClick={handleGenerate}
               disabled={!isConfigValid()}
-              className="btn-secondary flex-1"
+              className="btn-primary flex-1 min-w-[120px]"
               type="button"
+              aria-label="生成单个密码"
             >
-              批量生成
+              生成密码
             </button>
-          </div>
-        </div>
+            <div className="flex gap-2 flex-1 min-w-[200px]">
+              <label htmlFor="batch-count" className="sr-only">批量生成数量</label>
+              <input
+                id="batch-count"
+                type="number"
+                min="1"
+                max="50"
+                value={batchCount}
+                onChange={(e) => setBatchCount(Math.max(1, Math.min(50, parseInt(e.target.value) || 1)))}
+                className="input-field w-20 text-center"
+                aria-label="批量生成密码数量"
+              />
+              <button
+                onClick={handleBatchGenerate}
+                disabled={!isConfigValid()}
+                className="btn-secondary flex-1"
+                type="button"
+                aria-label="批量生成密码"
+              >
+                批量生成
+              </button>
+            </div>
+          </section>
 
-        {/* 密码显示 */}
-        {!showBatch && (
-          <div className="mb-6">
-            <PasswordDisplay password={password} />
-          </div>
-        )}
+          {/* 密码显示 */}
+          {!showBatch && (
+            <section className="mb-6" aria-label="生成的密码">
+              <PasswordDisplay password={password} />
+            </section>
+          )}
 
-        {/* 批量密码列表 */}
-        {showBatch && (
-          <div className="mb-6">
-            <BatchPasswordList passwords={batchPasswords} />
-          </div>
-        )}
+          {/* 批量密码列表 */}
+          {showBatch && (
+            <section className="mb-6" aria-label="批量生成的密码列表">
+              <BatchPasswordList passwords={batchPasswords} />
+            </section>
+          )}
 
-        {/* 使用建议 */}
-        <div className="card bg-gray-50 dark:bg-gray-900/50">
-          <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
-            💡 使用建议
-          </h3>
-          <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-            <li>• 密码长度建议至少 12 位，重要账户建议 16 位以上</li>
-            <li>• 包含多种字符类型（大小写字母、数字、特殊字符）可提高安全性</li>
-            <li>• 不要重复使用相同的密码</li>
-            <li>• 定期更换密码，特别是重要账户</li>
-            <li>• 使用密码管理器（如 1Password、LastPass）来安全存储密码</li>
-          </ul>
-        </div>
+          {/* 使用建议 */}
+          <article className="card bg-gray-50 dark:bg-gray-900/50" aria-label="使用建议">
+            <h2 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
+              💡 使用建议
+            </h2>
+            <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+              <li>• 密码长度建议至少 12 位，重要账户建议 16 位以上</li>
+              <li>• 包含多种字符类型（大小写字母、数字、特殊字符）可提高安全性</li>
+              <li>• 不要重复使用相同的密码</li>
+              <li>• 定期更换密码，特别是重要账户</li>
+              <li>• 使用密码管理器（如 1Password、LastPass）来安全存储密码</li>
+            </ul>
+          </article>
+        </main>
 
         {/* 页脚 */}
-        <footer className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+        <footer className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400" role="contentinfo">
           <p>密码生成器 v1.0 | 所有操作均在本地完成，保护您的隐私</p>
+          <p className="mt-2">
+            <a href="/" className="hover:text-blue-600 dark:hover:text-blue-400">首页</a>
+            <span className="mx-2">|</span>
+            <a href="#about" className="hover:text-blue-600 dark:hover:text-blue-400">关于</a>
+          </p>
         </footer>
       </div>
     </div>

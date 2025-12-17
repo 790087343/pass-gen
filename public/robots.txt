@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://pass-gen.example.com/sitemap.xml
+
+# 爬取延迟（可选）
+Crawl-delay: 1
+
