@@ -4,7 +4,7 @@ export default function PasswordConfig({ config, onConfigChange }) {
   };
 
   return (
-    <div className="card space-y-6">
+    <div className="card space-y-4 sm:space-y-6">
       <div>
         <label htmlFor="password-length" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           密码长度: {config.length}
@@ -16,11 +16,12 @@ export default function PasswordConfig({ config, onConfigChange }) {
           max="128"
           value={config.length}
           onChange={(e) => handleChange('length', parseInt(e.target.value))}
-          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+          className="w-full h-3 sm:h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 touch-manipulation"
           aria-label="密码长度设置"
           aria-valuemin={8}
           aria-valuemax={128}
           aria-valuenow={config.length}
+          style={{ WebkitAppearance: 'none', appearance: 'none' }}
         />
         <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
           <span>8</span>
@@ -38,7 +39,7 @@ export default function PasswordConfig({ config, onConfigChange }) {
               type="checkbox"
               checked={config.includeUppercase}
               onChange={(e) => handleChange('includeUppercase', e.target.checked)}
-              className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:border-gray-600"
+              className="w-5 h-5 sm:w-4 sm:h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:border-gray-600 touch-manipulation"
               aria-label="包含大写字母"
             />
             <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">

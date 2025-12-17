@@ -81,20 +81,22 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4">
+    <div className="min-h-screen py-4 sm:py-8 px-3 sm:px-4">
       <div className="max-w-4xl mx-auto">
         {/* 头部 */}
-        <header className="mb-8" role="banner">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+        <header className="mb-4 sm:mb-8" role="banner">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mb-4">
+            <div className="flex-1">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">
                 密码生成器
               </h1>
-              <p className="text-gray-600 dark:text-gray-400 mt-1">
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-1">
                 安全、易用的在线密码生成工具 - 免费生成强密码，保护您的账户安全
               </p>
             </div>
-            <ThemeToggle />
+            <div className="flex-shrink-0">
+              <ThemeToggle />
+            </div>
           </div>
         </header>
 
@@ -114,17 +116,17 @@ function App() {
           </section>
 
           {/* 生成按钮 */}
-          <section className="mb-6 flex flex-wrap gap-3" aria-label="生成操作">
+          <section className="mb-4 sm:mb-6 flex flex-col sm:flex-row gap-3" aria-label="生成操作">
             <button
               onClick={handleGenerate}
               disabled={!isConfigValid()}
-              className="btn-primary flex-1 min-w-[120px]"
+              className="btn-primary w-full sm:flex-1 sm:min-w-[120px] touch-manipulation min-h-[44px] text-base"
               type="button"
               aria-label="生成单个密码"
             >
               生成密码
             </button>
-            <div className="flex gap-2 flex-1 min-w-[200px]">
+            <div className="flex gap-2 w-full sm:flex-1 sm:min-w-[200px]">
               <label htmlFor="batch-count" className="sr-only">批量生成数量</label>
               <input
                 id="batch-count"
@@ -133,13 +135,13 @@ function App() {
                 max="50"
                 value={batchCount}
                 onChange={(e) => setBatchCount(Math.max(1, Math.min(50, parseInt(e.target.value) || 1)))}
-                className="input-field w-20 text-center"
+                className="input-field w-20 sm:w-24 text-center touch-manipulation min-h-[44px]"
                 aria-label="批量生成密码数量"
               />
               <button
                 onClick={handleBatchGenerate}
                 disabled={!isConfigValid()}
-                className="btn-secondary flex-1"
+                className="btn-secondary flex-1 touch-manipulation min-h-[44px] text-base"
                 type="button"
                 aria-label="批量生成密码"
               >

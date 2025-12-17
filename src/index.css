@@ -5,24 +5,57 @@
 @layer base {
   body {
     @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200;
+    /* 移动端优化 */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* 允许文本选择 */
+  p, span, label, input, textarea {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+  
+  /* 移动端滚动优化 */
+  html {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 hover:from-blue-700 hover:via-blue-600 hover:to-purple-700 dark:from-blue-500 dark:via-blue-400 dark:to-purple-500 dark:hover:from-blue-600 dark:hover:via-blue-500 dark:hover:to-purple-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg;
+    @apply bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 hover:from-blue-700 hover:via-blue-600 hover:to-purple-700 dark:from-blue-500 dark:via-blue-400 dark:to-purple-500 dark:hover:from-blue-600 dark:hover:via-blue-500 dark:hover:to-purple-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg active:scale-95;
+    /* 移动端触摸优化 */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
   
   .btn-secondary {
-    @apply bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+    @apply bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 font-medium py-2 px-4 rounded-lg transition-colors duration-200 active:scale-95;
+    /* 移动端触摸优化 */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
   
   .input-field {
     @apply w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200;
+    /* 移动端优化 */
+    font-size: 16px; /* 防止 iOS 自动缩放 */
+    -webkit-appearance: none;
+    appearance: none;
   }
   
   .card {
-    @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700;
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6 border border-gray-200 dark:border-gray-700;
+  }
+  
+  /* 移动端触摸优化工具类 */
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
