@@ -41,13 +41,13 @@ export default function PasswordDisplay({ password, onCopy }) {
             type={isVisible ? 'text' : 'password'}
             value={password || ''}
             readOnly
-            className="input-field pr-24 font-mono text-lg"
+            className="input-field pr-20 sm:pr-24 font-mono text-base sm:text-lg"
             placeholder="点击生成按钮创建密码"
           />
           <button
             onClick={handleCopy}
             disabled={!password}
-            className="absolute right-2 top-1/2 -translate-y-1/2 btn-primary text-sm py-1.5 px-3"
+            className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 btn-primary text-xs sm:text-sm py-1.5 px-2 sm:px-3 min-h-[36px] sm:min-h-[auto] touch-manipulation"
             type="button"
           >
             {copied ? '已复制!' : '复制'}

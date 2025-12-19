@@ -5,6 +5,7 @@
  */
 export function calculatePasswordStrength(password) {
   if (!password || password.length === 0) {
+    
     return { strength: 'none', score: 0, label: '无' };
   }
 
