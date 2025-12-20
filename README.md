@@ -5,7 +5,6 @@ Next.js + Tailwind + 简化版 shadcn/ui 的密码生成器重构版本。
 ## 使用
 
 ```bash
-cd next-app
 npm install
 npm run dev
 ```
