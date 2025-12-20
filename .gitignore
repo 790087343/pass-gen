@@ -14,6 +14,12 @@ dist/client
 dist/server
 *.local
 
+# Next.js
+.next/
+out/
+build/
+.vercel
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
